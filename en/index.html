@@ -9,62 +9,88 @@
   <link rel="alternate" hreflang="en" href="https://alexisjubin.com/en/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="/polices/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <script src="/theme.js"></script>
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
   <div class="page">
 
-    <header class="haut">
-      <a class="nom-court" href="/en/">Alexis Jubin</a>
-      <nav aria-label="Main navigation">
-        <a class="optionnel" href="#projects">Projects</a>
-        <a class="optionnel" href="#background">Background</a>
+    <header class="cote">
+      <div class="identite">
+        <h1><a href="/en/">Alexis<br>Jubin</a></h1>
+        <p class="presentation">Software engineer, graduated from IMT Atlantique after three years as an apprentice at Naval Group. There, I designed an MCP server that lets an AI work with the group's applications.</p>
+        <p class="statut">I'm looking for a V.I.E international placement in cloud or DevSecOps. <a href="#contact">Get in touch</a></p>
+      </div>
+
+      <figure class="drisse">
+        <svg viewBox="0 0 60 40" role="img" aria-label="Alfa flag">
+          <rect x="0" y="0" width="30" height="40" fill="#ffffff"/>
+          <polygon points="30,0 60,0 45,20 60,40 30,40" fill="#123f75"/>
+          <polygon points="0.5,0.5 59,0.5 44.4,20 59,39.5 0.5,39.5" fill="none" stroke="#1a2230" stroke-width="1"/>
+        </svg>
+        <svg viewBox="0 0 60 40" role="img" aria-label="Juliett flag">
+          <rect x="0" y="0" width="60" height="13.34" fill="#123f75"/>
+          <rect x="0" y="13.33" width="60" height="13.34" fill="#ffffff"/>
+          <rect x="0" y="26.66" width="60" height="13.34" fill="#123f75"/>
+          <rect x="0.5" y="0.5" width="59" height="39" fill="none" stroke="#1a2230" stroke-width="1"/>
+        </svg>
+        <figcaption>A and J, my initials in the International Code of Signals.</figcaption>
+      </figure>
+
+      <nav class="sommaire" aria-label="Contents">
+        <a href="#work">Work</a>
+        <a href="#on-the-side">On the side</a>
+        <a href="#background">Background</a>
         <a href="#contact">Contact</a>
-        <a href="/" hreflang="fr" lang="fr">Français</a>
       </nav>
+
+      <div class="reglages">
+        <a href="/" hreflang="fr" lang="fr">Français</a>
+        <button type="button" class="theme" id="theme" aria-live="polite">Theme: automatic</button>
+      </div>
     </header>
 
-    <main>
-      <section class="ouverture">
-        <div>
-          <h1>Alexis<br>Jubin</h1>
-          <p class="presentation">Software engineer, graduated from IMT Atlantique after three years as an apprentice at Naval Group. There, I designed an MCP server that lets an AI work with the group's applications.</p>
-          <p class="statut">I'm looking for a V.I.E international placement in cloud or DevSecOps. <a href="#contact">Get in touch</a></p>
-        </div>
-        <figure class="drisse">
-          <svg viewBox="0 0 60 40" role="img" aria-label="Alfa flag">
-            <rect x="0" y="0" width="30" height="40" fill="#ffffff"/>
-            <polygon points="30,0 60,0 45,20 60,40 30,40" fill="#123f75"/>
-            <polygon points="0.5,0.5 59,0.5 44.4,20 59,39.5 0.5,39.5" fill="none" stroke="#1a2230" stroke-width="1"/>
-          </svg>
-          <svg viewBox="0 0 60 40" role="img" aria-label="Juliett flag">
-            <rect x="0" y="0" width="60" height="13.34" fill="#123f75"/>
-            <rect x="0" y="13.33" width="60" height="13.34" fill="#ffffff"/>
-            <rect x="0" y="26.66" width="60" height="13.34" fill="#123f75"/>
-            <rect x="0.5" y="0.5" width="59" height="39" fill="none" stroke="#1a2230" stroke-width="1"/>
-          </svg>
-          <figcaption>A and J, my initials in the International Code of Signals.</figcaption>
-        </figure>
+    <main class="contenu">
+
+      <section class="section" id="work" aria-labelledby="title-work">
+        <h2 id="title-work">Work</h2>
+
+        <article class="projet">
+          <h3>An MCP server for Naval Group's application platform</h3>
+          <p class="contexte">Naval Group, March to August 2026, final-year project</p>
+          <figure class="apercu schema">
+            <svg viewBox="0 0 560 150" role="img" aria-labelledby="diagram-mcp">
+              <title id="diagram-mcp">An AI calls the MCP server, which exposes 11 tools and relays calls to the applications built on the platform.</title>
+              <g class="boite"><rect x="1" y="45" width="110" height="60"/><text x="56" y="80">An AI</text></g>
+              <g class="boite fort"><rect x="170" y="30" width="160" height="90"/><text x="250" y="70">MCP server</text><text class="petit" x="250" y="92">11 tools</text></g>
+              <g class="boite"><rect x="390" y="1" width="168" height="148"/><text class="petit" x="474" y="22">Application platform</text></g>
+              <g class="boite fine"><rect x="404" y="34" width="140" height="30"/><text class="petit" x="474" y="54">Application A</text></g>
+              <g class="boite fine"><rect x="404" y="72" width="140" height="30"/><text class="petit" x="474" y="92">Application B</text></g>
+              <g class="boite fine"><rect x="404" y="110" width="140" height="30"/><text class="petit" x="474" y="130">…</text></g>
+              <path class="lien" d="M111 75 H170 M330 75 H390"/>
+            </svg>
+          </figure>
+          <p>Naval Group relies on a shared application platform that many applications are built on. I designed and built, on my own, an MCP server that joins the platform's core features, so that an AI can make calls to the different applications built on it.</p>
+          <p>It exposes 11 tools and will be added to the platform during the next migrations, making it available to all of those applications.</p>
+          <p class="outils">Python, Java, REST APIs, Model Context Protocol</p>
+        </article>
       </section>
 
-      <section class="section" id="projects" aria-labelledby="title-projects">
-        <h2 id="title-projects">Projects</h2>
-        <div>
-          <article class="projet">
-            <h3>An MCP server for the group's application platform</h3>
-            <p class="contexte">Naval Group, March to August 2026, final-year project</p>
-            <p>Naval Group relies on a shared application platform that many applications are built on. I designed and built, on my own, an MCP server that joins the platform's core features, so that an AI can make calls to the different applications built on it.</p>
-            <p>It exposes 11 tools and will be added to the platform during the next migrations, making it available to all of those applications.</p>
-            <p class="outils">Python, Java, REST APIs, Model Context Protocol</p>
-          </article>
-          <article class="projet">
-            <h3>A timeline of Warhammer's Old World</h3>
-            <p class="contexte">Personal project, since October 2026</p>
-            <p>I never found a clear timeline of the Warhammer Fantasy and The Old World setting online. Dates are scattered across dozens of books and wikis, and they don't always agree.</p>
-            <p>So I made one, from the Old Ones to the Storm of Chaos, filterable by faction and region. Each event cites its sources and flags where they disagree. The timeline itself is in French. <a href="/vieux-monde/" hreflang="fr">See the timeline</a></p>
-            <p class="outils">HTML, CSS, JavaScript, JSON data</p>
-          </article>
-        </div>
+      <section class="section" id="on-the-side" aria-labelledby="title-side">
+        <h2 id="title-side">On the side</h2>
+        <p class="intro-section">Things I build in my free time, about subjects I care about.</p>
+
+        <article class="projet" data-depot="vieux-monde">
+          <h3><a href="/vieux-monde/" hreflang="fr">A timeline of Warhammer's Old World</a></h3>
+          <p class="contexte">Personal project, since October 2026<span class="maj"></span></p>
+          <a class="apercu frise-apercu" href="/vieux-monde/" hreflang="fr" aria-label="Open the timeline">
+            <span class="frise-mini" id="frise-mini"></span>
+            <span class="frise-bornes"><span>6000 before IC</span><span>2522 IC</span></span>
+          </a>
+          <p>I never found a clear timeline of the Warhammer Fantasy and The Old World setting online. Dates are scattered across dozens of books and wikis, and they don't always agree.</p>
+          <p>So I made one, from the Old Ones to the Storm of Chaos, filterable by faction and region. Each event cites its sources and flags where they disagree. The timeline itself is in French.</p>
+          <p class="outils">HTML, CSS, JavaScript, JSON data. <a href="https://github.com/alexisjubin/vieux-monde">Code on GitHub</a></p>
+        </article>
       </section>
 
       <section class="section" id="background" aria-labelledby="title-background">
@@ -87,10 +113,7 @@
             <dd><strong>Lifeguard</strong><span>O'Gliss Park in Vendée, then Kerbihan aquatic centre in Hennebont.</span></dd>
           </div>
         </dl>
-      </section>
 
-      <section class="section" id="skills" aria-labelledby="title-skills">
-        <h2 id="title-skills">Skills</h2>
         <div class="competences">
           <div>
             <h3>Languages</h3>
@@ -109,20 +132,19 @@
 
       <section class="section contact" id="contact" aria-labelledby="title-contact">
         <h2 id="title-contact">Contact</h2>
-        <div>
-          <a class="adresse" href="mailto:aj@alexisjubin.com">aj@alexisjubin.com</a>
-          <p class="autres">
-            <a href="https://www.linkedin.com/in/alexis-jubin">LinkedIn</a>
-            <a href="https://github.com/alexisjubin">GitHub</a>
-          </p>
-        </div>
+        <a class="adresse" href="mailto:aj@alexisjubin.com">aj@alexisjubin.com</a>
+        <p class="autres">
+          <a href="https://www.linkedin.com/in/alexis-jubin">LinkedIn</a>
+          <a href="https://github.com/alexisjubin">GitHub</a>
+        </p>
       </section>
+
+      <footer class="bas">
+        <p>Alexis Jubin, 2026. Hand-written site, <a href="https://github.com/alexisjubin/alexisjubin.github.io">source code on GitHub</a>.</p>
+      </footer>
     </main>
 
-    <footer class="bas">
-      <p>Alexis Jubin, 2026</p>
-    </footer>
-
   </div>
+  <script src="/portfolio.js" defer></script>
 </body>
 </html>

@@ -14,19 +14,54 @@
   font-display: swap;
 }
 
+/* Couleurs. Les primitives ne changent pas, seules les variables
+   sémantiques sont redéfinies pour le mode sombre. */
+
 :root {
-  --brume: #eef1ef;
-  --papier: #f7f8f6;
-  --encre: #1a2230;
-  --gris: #4f5966;
-  --filet: #c8cfcc;
-  --pavillon: #123f75;
-  --pavillon-clair: #dfe7ef;
+  --bleu-pavillon: #123f75;
+  --bleu-ciel: #93b4dc;
+
+  --fond: #edf0f2;
+  --surface: #f7f9fa;
+  --encre: #17212d;
+  --gris: #4b5664;
+  --filet: #cbd2d9;
+  --accent: var(--bleu-pavillon);
+  --accent-fond: #dde6f0;
+  --graisse-texte: 400;
 
   --titre: "Schibsted Grotesk", "Helvetica Neue", sans-serif;
   --texte: "Literata", Georgia, serif;
 
-  --mesure: 36rem;
+  --mesure: 38rem;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fond: #121821;
+    --surface: #1a222d;
+    --encre: #e2e6eb;
+    --gris: #a3adb9;
+    --filet: #2c3644;
+    --accent: var(--bleu-ciel);
+    --accent-fond: #1f2d3f;
+    --graisse-texte: 350;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --fond: #121821;
+  --surface: #1a222d;
+  --encre: #e2e6eb;
+  --gris: #a3adb9;
+  --filet: #2c3644;
+  --accent: var(--bleu-ciel);
+  --accent-fond: #1f2d3f;
+  --graisse-texte: 350;
+  color-scheme: dark;
 }
 
 *,
@@ -41,16 +76,17 @@ html {
 
 body {
   margin: 0;
-  background: var(--brume);
+  background: var(--fond);
   color: var(--encre);
   font-family: var(--texte);
+  font-weight: var(--graisse-texte);
   font-size: 1.0625rem;
   line-height: 1.65;
   font-optical-sizing: auto;
 }
 
 a {
-  color: var(--pavillon);
+  color: var(--accent);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
 }
@@ -60,7 +96,7 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 2px solid var(--pavillon);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -77,146 +113,180 @@ p {
   margin: 0 0 1em;
 }
 
+/* Deux colonnes : moi à gauche, ce que je fais à droite */
+
 .page {
-  max-width: 68rem;
+  max-width: 74rem;
   margin: 0 auto;
   padding: 0 1.5rem;
-}
-
-/* En-tête */
-
-.haut {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 1.5rem 0;
-  font-family: var(--titre);
-  font-size: 0.95rem;
-}
-
-.haut .nom-court {
-  font-weight: 700;
-  color: var(--encre);
-  text-decoration: none;
-}
-
-.haut nav {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.haut nav a {
-  color: var(--gris);
-  text-decoration: none;
-}
-
-.haut nav a:hover {
-  color: var(--encre);
-}
-
-/* Ouverture */
-
-.ouverture {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 3rem;
-  align-items: start;
-  padding: 4.5rem 0 5rem;
+  grid-template-columns: 19rem minmax(0, 1fr);
+  gap: 5rem;
 }
 
-.ouverture h1 {
-  font-size: clamp(3rem, 9vw, 6.75rem);
-  letter-spacing: -0.035em;
-  line-height: 0.95;
+.cote {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 3.5rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.cote h1 {
+  font-size: 3.6rem;
   font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.015em;
 }
 
-.ouverture .presentation {
-  max-width: var(--mesure);
-  margin-top: 2rem;
-  font-size: 1.2rem;
-  line-height: 1.6;
+.cote h1 a {
+  color: var(--encre);
+  text-decoration: none;
 }
 
-.ouverture .statut {
-  margin-top: 1.75rem;
+.presentation {
+  margin-top: 1.5rem;
+  font-size: 1.05rem;
+}
+
+.statut {
+  margin: 0;
   font-family: var(--titre);
-  font-size: 1rem;
-  color: var(--gris);
-}
-
-.ouverture .statut a {
   font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--accent);
 }
 
 .drisse {
-  position: relative;
-  padding-left: 1.5rem;
-  margin-top: 0.5rem;
-}
-
-.drisse::before {
-  content: "";
-  position: absolute;
-  left: 0.35rem;
-  top: -2.5rem;
-  bottom: -1rem;
-  width: 1px;
-  background: var(--encre);
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
 }
 
 .drisse svg {
   display: block;
-  width: 7.5rem;
+  width: 3.75rem;
   height: auto;
+  flex: none;
 }
 
-.drisse svg + svg {
-  margin-top: 1.25rem;
+/* Le liseré des pavillons suit le thème, sinon il disparaît sur fond sombre. */
+.drisse [fill="none"] {
+  stroke: var(--gris);
 }
 
 .drisse figcaption {
-  margin-top: 1.75rem;
-  max-width: 9.5rem;
   font-family: var(--titre);
   font-size: 0.8rem;
   line-height: 1.4;
   color: var(--gris);
 }
 
-/* Sections */
+.sommaire {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-family: var(--titre);
+  font-weight: 600;
+}
+
+.sommaire a {
+  color: var(--encre);
+  text-decoration: none;
+  width: fit-content;
+}
+
+.sommaire a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.reglages {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1.25rem;
+  font-family: var(--titre);
+  font-size: 0.9rem;
+}
+
+.theme {
+  font: inherit;
+  color: var(--gris);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: var(--filet);
+  text-underline-offset: 0.18em;
+}
+
+.theme:hover {
+  color: var(--encre);
+}
+
+/* Colonne de droite */
+
+.contenu {
+  padding-top: 3.5rem;
+  min-width: 0;
+}
 
 .section {
-  display: grid;
-  grid-template-columns: 13rem minmax(0, 1fr);
-  gap: 2rem;
-  padding: 3.5rem 0;
+  padding: 0 0 4rem;
+}
+
+.section + .section {
+  padding-top: 3rem;
   border-top: 1px solid var(--filet);
 }
 
 .section > h2 {
-  font-size: 1.35rem;
-  letter-spacing: -0.01em;
-  padding-top: 0.2rem;
+  font-size: 1.05rem;
+  color: var(--gris);
+  margin-bottom: 1.75rem;
+}
+
+.intro-section {
+  max-width: var(--mesure);
+  margin-top: -0.75rem;
+  margin-bottom: 2rem;
+  color: var(--gris);
 }
 
 /* Projets */
 
 .projet {
-  max-width: 42rem;
+  max-width: 44rem;
 }
 
 .projet + .projet {
-  margin-top: 3rem;
+  margin-top: 3.5rem;
 }
 
 .projet h3 {
-  font-size: 1.6rem;
-  letter-spacing: -0.02em;
+  font-size: 1.85rem;
+  letter-spacing: -0.01em;
+  max-width: 34rem;
+}
+
+.projet h3 a {
+  color: var(--encre);
+  text-decoration-color: var(--filet);
+}
+
+.projet h3 a:hover {
+  text-decoration-color: var(--accent);
 }
 
 .projet .contexte {
-  margin: 0.5rem 0 1rem;
+  margin: 0.5rem 0 1.25rem;
   font-family: var(--titre);
   font-size: 0.95rem;
   color: var(--gris);
@@ -229,46 +299,106 @@ p {
   margin: 0;
 }
 
-.projet.principal {
-  background: var(--papier);
-  margin-left: -1.75rem;
-  padding: 1.75rem;
-  border-radius: 3px;
-  max-width: calc(42rem + 3.5rem);
+.apercu {
+  display: block;
+  margin: 0 0 1.5rem;
 }
 
-.projet.principal h3 {
-  font-size: 2rem;
-}
+/* Schéma du serveur MCP */
 
-.chiffres {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 2.25rem;
-  margin: 0 0 1.25rem;
-  padding: 0;
-  list-style: none;
+.schema svg {
+  display: block;
+  width: 100%;
+  height: auto;
   font-family: var(--titre);
-  font-size: 0.95rem;
 }
 
-.chiffres strong {
-  font-size: 1.15rem;
-  color: var(--pavillon);
+.schema rect {
+  fill: var(--surface);
+  stroke: var(--encre);
+  stroke-width: 1;
+}
+
+.schema .fort rect {
+  fill: var(--accent-fond);
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.schema .fine rect {
+  stroke: var(--filet);
+}
+
+.schema text {
+  fill: var(--encre);
+  font-size: 16px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+.schema text.petit {
+  font-size: 13px;
+  font-weight: 400;
+  fill: var(--gris);
+}
+
+.schema .lien {
+  stroke: var(--encre);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+/* Aperçu de la chronologie */
+
+.frise-apercu {
+  text-decoration: none;
+  color: var(--gris);
+}
+
+.frise-mini {
+  position: relative;
+  display: block;
+  height: 4.5rem;
+  background: var(--surface);
+  border-top: 1px solid var(--encre);
+  border-bottom: 1px solid var(--encre);
+}
+
+.frise-apercu:hover .frise-mini {
+  border-color: var(--accent);
+}
+
+.frise-mini .trait {
+  position: absolute;
+  top: 0.5rem;
+  width: 2px;
+  margin-left: -1px;
+}
+
+.frise-mini .trait[data-importance="3"] { height: 2.8rem; }
+.frise-mini .trait[data-importance="2"] { height: 2rem; }
+.frise-mini .trait[data-importance="1"] { height: 1.3rem; }
+
+.frise-bornes {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.3rem;
+  font-family: var(--titre);
+  font-size: 0.8rem;
 }
 
 /* Parcours */
 
 .etapes {
-  margin: 0;
-  max-width: 42rem;
+  margin: 0 0 3rem;
+  max-width: 44rem;
 }
 
 .etape {
   display: grid;
-  grid-template-columns: 9.5rem minmax(0, 1fr);
+  grid-template-columns: 9rem minmax(0, 1fr);
   gap: 1.5rem;
-  padding: 0 0 1.75rem;
+  padding: 0 0 1.5rem;
 }
 
 .etape dt {
@@ -294,18 +424,16 @@ p {
   color: var(--gris);
 }
 
-/* Compétences */
-
 .competences {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
-  gap: 2rem 2.5rem;
-  max-width: 46rem;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1.5rem 2.5rem;
+  max-width: 44rem;
 }
 
 .competences h3 {
   font-size: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .competences p {
@@ -319,87 +447,84 @@ p {
   display: inline-block;
   font-family: var(--titre);
   font-weight: 700;
-  font-size: clamp(1.6rem, 4.5vw, 2.75rem);
-  letter-spacing: -0.02em;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
   line-height: 1.15;
   word-break: break-word;
 }
 
 .contact .autres {
-  margin-top: 1.5rem;
+  margin: 1.25rem 0 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem 2rem;
   font-family: var(--titre);
 }
 
-/* Pied */
-
 .bas {
-  padding: 2.5rem 0 3rem;
+  padding: 2rem 0 3rem;
   border-top: 1px solid var(--filet);
   font-family: var(--titre);
   font-size: 0.85rem;
   color: var(--gris);
 }
 
-/* Petits écrans */
+/* Petits écrans : une seule colonne */
 
-@media (max-width: 760px) {
-  .ouverture {
+@media (max-width: 860px) {
+  .page {
     grid-template-columns: minmax(0, 1fr);
-    gap: 2.5rem;
-    padding: 2.5rem 0 3.5rem;
+    gap: 0;
+    padding: 0 1rem;
   }
 
-  .drisse {
-    order: -1;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding-left: 0;
-    margin-top: 0;
-  }
-
-  .drisse::before {
-    display: none;
-  }
-
-  .drisse svg {
-    width: 4.5rem;
-  }
-
-  .drisse svg + svg {
-    margin-top: 0;
-  }
-
-  .drisse figcaption {
-    margin-top: 0;
-    max-width: none;
-  }
-
-  .section {
-    grid-template-columns: minmax(0, 1fr);
+  .cote {
+    position: static;
+    height: auto;
+    overflow: visible;
+    padding: 2rem 0 2.5rem;
     gap: 1.5rem;
-    padding: 2.75rem 0;
+    border-bottom: 1px solid var(--filet);
   }
 
-  .projet.principal {
-    margin-left: -1rem;
-    margin-right: -1rem;
-    padding: 1.25rem 1rem;
+  .cote h1 {
+    font-size: clamp(2.8rem, 13vw, 3.6rem);
+  }
+
+  .sommaire {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.25rem;
+  }
+
+  .reglages {
+    margin-top: 0;
+  }
+
+  .contenu {
+    padding-top: 2.5rem;
+  }
+
+  .projet h3 {
+    font-size: 1.5rem;
   }
 
   .etape {
     grid-template-columns: 1fr;
     gap: 0.15rem;
   }
+}
 
-  .haut nav {
-    gap: 1rem;
-  }
+/* Page 404 */
 
-  .haut nav .optionnel {
-    display: none;
-  }
+.introuvable {
+  max-width: 74rem;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.introuvable h1 {
+  font-size: clamp(2.8rem, 9vw, 5rem);
+  font-weight: 800;
+  line-height: 0.95;
+  margin-bottom: 1.5rem;
 }

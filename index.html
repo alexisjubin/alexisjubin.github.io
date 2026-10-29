@@ -9,62 +9,88 @@
   <link rel="alternate" hreflang="fr" href="https://alexisjubin.com/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="/polices/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <script src="/theme.js"></script>
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
   <div class="page">
 
-    <header class="haut">
-      <a class="nom-court" href="/">Alexis Jubin</a>
-      <nav aria-label="Navigation principale">
-        <a class="optionnel" href="#projets">Projets</a>
-        <a class="optionnel" href="#parcours">Parcours</a>
+    <header class="cote">
+      <div class="identite">
+        <h1><a href="/">Alexis<br>Jubin</a></h1>
+        <p class="presentation">Ingénieur informatique diplômé d'IMT Atlantique, après trois ans d'alternance chez Naval Group. J'y ai notamment conçu un serveur MCP qui permet à une IA de travailler avec les applications du groupe.</p>
+        <p class="statut">Je cherche un V.I.E dans le cloud ou le DevSecOps. <a href="#contact">Écrivez-moi</a></p>
+      </div>
+
+      <figure class="drisse">
+        <svg viewBox="0 0 60 40" role="img" aria-label="Pavillon Alfa">
+          <rect x="0" y="0" width="30" height="40" fill="#ffffff"/>
+          <polygon points="30,0 60,0 45,20 60,40 30,40" fill="#123f75"/>
+          <polygon points="0.5,0.5 59,0.5 44.4,20 59,39.5 0.5,39.5" fill="none" stroke="#1a2230" stroke-width="1"/>
+        </svg>
+        <svg viewBox="0 0 60 40" role="img" aria-label="Pavillon Juliett">
+          <rect x="0" y="0" width="60" height="13.34" fill="#123f75"/>
+          <rect x="0" y="13.33" width="60" height="13.34" fill="#ffffff"/>
+          <rect x="0" y="26.66" width="60" height="13.34" fill="#123f75"/>
+          <rect x="0.5" y="0.5" width="59" height="39" fill="none" stroke="#1a2230" stroke-width="1"/>
+        </svg>
+        <figcaption>A et J, mes initiales en pavillons du code international des signaux.</figcaption>
+      </figure>
+
+      <nav class="sommaire" aria-label="Sommaire">
+        <a href="#travail">Travail</a>
+        <a href="#a-cote">À côté</a>
+        <a href="#parcours">Parcours</a>
         <a href="#contact">Contact</a>
-        <a href="/en/" hreflang="en" lang="en">English</a>
       </nav>
+
+      <div class="reglages">
+        <a href="/en/" hreflang="en" lang="en">English</a>
+        <button type="button" class="theme" id="theme" aria-live="polite">Thème : automatique</button>
+      </div>
     </header>
 
-    <main>
-      <section class="ouverture">
-        <div>
-          <h1>Alexis<br>Jubin</h1>
-          <p class="presentation">Ingénieur informatique diplômé d'IMT Atlantique, après trois ans d'alternance chez Naval Group. J'y ai notamment conçu un serveur MCP qui permet à une IA de travailler avec les applications du groupe.</p>
-          <p class="statut">Je cherche un V.I.E dans le cloud ou le DevSecOps. <a href="#contact">Écrivez-moi</a></p>
-        </div>
-        <figure class="drisse">
-          <svg viewBox="0 0 60 40" role="img" aria-label="Pavillon Alfa">
-            <rect x="0" y="0" width="30" height="40" fill="#ffffff"/>
-            <polygon points="30,0 60,0 45,20 60,40 30,40" fill="#123f75"/>
-            <polygon points="0.5,0.5 59,0.5 44.4,20 59,39.5 0.5,39.5" fill="none" stroke="#1a2230" stroke-width="1"/>
-          </svg>
-          <svg viewBox="0 0 60 40" role="img" aria-label="Pavillon Juliett">
-            <rect x="0" y="0" width="60" height="13.34" fill="#123f75"/>
-            <rect x="0" y="13.33" width="60" height="13.34" fill="#ffffff"/>
-            <rect x="0" y="26.66" width="60" height="13.34" fill="#123f75"/>
-            <rect x="0.5" y="0.5" width="59" height="39" fill="none" stroke="#1a2230" stroke-width="1"/>
-          </svg>
-          <figcaption>A et J, mes initiales en pavillons du code international des signaux.</figcaption>
-        </figure>
+    <main class="contenu">
+
+      <section class="section" id="travail" aria-labelledby="titre-travail">
+        <h2 id="titre-travail">Travail</h2>
+
+        <article class="projet">
+          <h3>Un serveur MCP pour le socle applicatif de Naval Group</h3>
+          <p class="contexte">Naval Group, de mars à août 2026, projet de fin d'études</p>
+          <figure class="apercu schema">
+            <svg viewBox="0 0 560 150" role="img" aria-labelledby="schema-mcp">
+              <title id="schema-mcp">Une IA appelle le serveur MCP, qui expose 11 outils et relaie les appels vers les applications construites sur le socle.</title>
+              <g class="boite"><rect x="1" y="45" width="110" height="60"/><text x="56" y="80">Une IA</text></g>
+              <g class="boite fort"><rect x="170" y="30" width="160" height="90"/><text x="250" y="70">Serveur MCP</text><text class="petit" x="250" y="92">11 outils</text></g>
+              <g class="boite"><rect x="390" y="1" width="168" height="148"/><text class="petit" x="474" y="22">Socle applicatif</text></g>
+              <g class="boite fine"><rect x="404" y="34" width="140" height="30"/><text class="petit" x="474" y="54">Application A</text></g>
+              <g class="boite fine"><rect x="404" y="72" width="140" height="30"/><text class="petit" x="474" y="92">Application B</text></g>
+              <g class="boite fine"><rect x="404" y="110" width="140" height="30"/><text class="petit" x="474" y="130">…</text></g>
+              <path class="lien" d="M111 75 H170 M330 75 H390"/>
+            </svg>
+          </figure>
+          <p>Naval Group s'appuie sur un socle applicatif commun, sur lequel reposent de nombreuses applications. J'ai conçu et développé seul un serveur MCP qui vient s'ajouter aux fonctionnalités de base de ce socle, pour qu'une IA puisse faire des appels aux différentes applications construites dessus.</p>
+          <p>Il expose 11 outils et sera intégré au socle lors des prochaines migrations, ce qui le rendra disponible pour toutes ces applications.</p>
+          <p class="outils">Python, Java, API REST, Model Context Protocol</p>
+        </article>
       </section>
 
-      <section class="section" id="projets" aria-labelledby="titre-projets">
-        <h2 id="titre-projets">Projets</h2>
-        <div>
-          <article class="projet">
-            <h3>Un serveur MCP pour le socle applicatif du groupe</h3>
-            <p class="contexte">Naval Group, de mars à août 2026, projet de fin d'études</p>
-            <p>Naval Group s'appuie sur un socle applicatif commun, sur lequel reposent de nombreuses applications. J'ai conçu et développé seul un serveur MCP qui vient s'ajouter aux fonctionnalités de base de ce socle, pour qu'une IA puisse faire des appels aux différentes applications construites dessus.</p>
-            <p>Il expose 11 outils et sera intégré au socle lors des prochaines migrations, ce qui le rendra disponible pour toutes ces applications.</p>
-            <p class="outils">Python, Java, API REST, Model Context Protocol</p>
-          </article>
-          <article class="projet">
-            <h3>Une chronologie du Vieux Monde de Warhammer</h3>
-            <p class="contexte">Projet personnel, depuis octobre 2026</p>
-            <p>Je n'ai jamais trouvé en ligne de chronologie claire de l'univers de Warhammer Fantasy et de The Old World. Les dates sont éparpillées entre des dizaines de livres et de wikis, et ne s'accordent pas toujours.</p>
-            <p>J'en ai fait une, des Anciens à la Tempête du Chaos, filtrable par faction et par région. Chaque événement cite ses sources et indique quand elles divergent. <a href="/vieux-monde/">Voir la chronologie</a></p>
-            <p class="outils">HTML, CSS, JavaScript, données en JSON</p>
-          </article>
-        </div>
+      <section class="section" id="a-cote" aria-labelledby="titre-a-cote">
+        <h2 id="titre-a-cote">À côté</h2>
+        <p class="intro-section">Des projets faits sur mon temps libre, sur des sujets qui me tiennent à cœur.</p>
+
+        <article class="projet" data-depot="vieux-monde">
+          <h3><a href="/vieux-monde/">Une chronologie du Vieux Monde de Warhammer</a></h3>
+          <p class="contexte">Projet personnel, depuis octobre 2026<span class="maj"></span></p>
+          <a class="apercu frise-apercu" href="/vieux-monde/" aria-label="Ouvrir la chronologie">
+            <span class="frise-mini" id="frise-mini"></span>
+            <span class="frise-bornes"><span>6000 av. CI</span><span>2522 CI</span></span>
+          </a>
+          <p>Je n'ai jamais trouvé en ligne de chronologie claire de l'univers de Warhammer Fantasy et de The Old World. Les dates sont éparpillées entre des dizaines de livres et de wikis, et ne s'accordent pas toujours.</p>
+          <p>J'en ai fait une, des Anciens à la Tempête du Chaos, filtrable par faction et par région. Chaque événement cite ses sources et indique quand elles divergent.</p>
+          <p class="outils">HTML, CSS, JavaScript, données en JSON. <a href="https://github.com/alexisjubin/vieux-monde">Code sur GitHub</a></p>
+        </article>
       </section>
 
       <section class="section" id="parcours" aria-labelledby="titre-parcours">
@@ -87,10 +113,7 @@
             <dd><strong>Sauveteur aquatique</strong><span>O'Gliss Park en Vendée, puis Centre aquatique de Kerbihan à Hennebont.</span></dd>
           </div>
         </dl>
-      </section>
 
-      <section class="section" id="competences" aria-labelledby="titre-competences">
-        <h2 id="titre-competences">Compétences</h2>
         <div class="competences">
           <div>
             <h3>Langages</h3>
@@ -109,20 +132,19 @@
 
       <section class="section contact" id="contact" aria-labelledby="titre-contact">
         <h2 id="titre-contact">Contact</h2>
-        <div>
-          <a class="adresse" href="mailto:aj@alexisjubin.com">aj@alexisjubin.com</a>
-          <p class="autres">
-            <a href="https://www.linkedin.com/in/alexis-jubin">LinkedIn</a>
-            <a href="https://github.com/alexisjubin">GitHub</a>
-          </p>
-        </div>
+        <a class="adresse" href="mailto:aj@alexisjubin.com">aj@alexisjubin.com</a>
+        <p class="autres">
+          <a href="https://www.linkedin.com/in/alexis-jubin">LinkedIn</a>
+          <a href="https://github.com/alexisjubin">GitHub</a>
+        </p>
       </section>
+
+      <footer class="bas">
+        <p>Alexis Jubin, 2026. Site écrit à la main, <a href="https://github.com/alexisjubin/alexisjubin.github.io">code source sur GitHub</a>.</p>
+      </footer>
     </main>
 
-    <footer class="bas">
-      <p>Alexis Jubin, 2026</p>
-    </footer>
-
   </div>
+  <script src="/portfolio.js" defer></script>
 </body>
 </html>
