@@ -27,7 +27,6 @@
   --gris: #4b5664;
   --filet: #cbd2d9;
   --accent: var(--bleu-pavillon);
-  --accent-fond: #dde6f0;
   --graisse-texte: 400;
 
   --titre: "Schibsted Grotesk", "Helvetica Neue", sans-serif;
@@ -46,7 +45,6 @@
     --gris: #a3adb9;
     --filet: #2c3644;
     --accent: var(--bleu-ciel);
-    --accent-fond: #1f2d3f;
     --graisse-texte: 350;
     color-scheme: dark;
   }
@@ -59,7 +57,6 @@
   --gris: #a3adb9;
   --filet: #2c3644;
   --accent: var(--bleu-ciel);
-  --accent-fond: #1f2d3f;
   --graisse-texte: 350;
   color-scheme: dark;
 }
@@ -113,15 +110,13 @@ p {
   margin: 0 0 1em;
 }
 
-/* Deux colonnes : moi à gauche, ce que je fais à droite */
+/* Deux colonnes sur toute la largeur : moi à gauche, les projets à droite */
 
 .page {
-  max-width: 74rem;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 clamp(1.5rem, 4vw, 4.5rem);
   display: grid;
   grid-template-columns: 19rem minmax(0, 1fr);
-  gap: 5rem;
+  gap: clamp(3rem, 6vw, 7rem);
 }
 
 .cote {
@@ -152,39 +147,6 @@ p {
   font-size: 1.05rem;
 }
 
-.statut {
-  margin: 0;
-  font-family: var(--titre);
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--accent);
-}
-
-.drisse {
-  margin: 0;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.9rem;
-}
-
-.drisse svg {
-  display: block;
-  width: 3.75rem;
-  height: auto;
-  flex: none;
-}
-
-/* Le liseré des pavillons suit le thème, sinon il disparaît sur fond sombre. */
-.drisse [fill="none"] {
-  stroke: var(--gris);
-}
-
-.drisse figcaption {
-  font-family: var(--titre);
-  font-size: 0.8rem;
-  line-height: 1.4;
-  color: var(--gris);
-}
 
 .sommaire {
   display: flex;
@@ -253,21 +215,19 @@ p {
   margin-bottom: 1.75rem;
 }
 
-.intro-section {
-  max-width: var(--mesure);
-  margin-top: -0.75rem;
-  margin-bottom: 2rem;
-  color: var(--gris);
-}
 
 /* Projets */
 
+/* Le texte garde une longueur de ligne lisible, l'aperçu prend le reste. */
 .projet {
-  max-width: 44rem;
+  display: grid;
+  grid-template-columns: minmax(0, 36rem) minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 5rem);
+  align-items: center;
 }
 
 .projet + .projet {
-  margin-top: 3.5rem;
+  margin-top: 4.5rem;
 }
 
 .projet h3 {
@@ -301,51 +261,6 @@ p {
 
 .apercu {
   display: block;
-  margin: 0 0 1.5rem;
-}
-
-/* Schéma du serveur MCP */
-
-.schema svg {
-  display: block;
-  width: 100%;
-  height: auto;
-  font-family: var(--titre);
-}
-
-.schema rect {
-  fill: var(--surface);
-  stroke: var(--encre);
-  stroke-width: 1;
-}
-
-.schema .fort rect {
-  fill: var(--accent-fond);
-  stroke: var(--accent);
-  stroke-width: 2;
-}
-
-.schema .fine rect {
-  stroke: var(--filet);
-}
-
-.schema text {
-  fill: var(--encre);
-  font-size: 16px;
-  font-weight: 600;
-  text-anchor: middle;
-}
-
-.schema text.petit {
-  font-size: 13px;
-  font-weight: 400;
-  fill: var(--gris);
-}
-
-.schema .lien {
-  stroke: var(--encre);
-  stroke-width: 1.5;
-  fill: none;
 }
 
 /* Aperçu de la chronologie */
@@ -358,7 +273,7 @@ p {
 .frise-mini {
   position: relative;
   display: block;
-  height: 4.5rem;
+  height: 9rem;
   background: var(--surface);
   border-top: 1px solid var(--encre);
   border-bottom: 1px solid var(--encre);
@@ -370,14 +285,14 @@ p {
 
 .frise-mini .trait {
   position: absolute;
-  top: 0.5rem;
-  width: 2px;
+  top: 0.75rem;
+  width: 3px;
   margin-left: -1px;
 }
 
-.frise-mini .trait[data-importance="3"] { height: 2.8rem; }
-.frise-mini .trait[data-importance="2"] { height: 2rem; }
-.frise-mini .trait[data-importance="1"] { height: 1.3rem; }
+.frise-mini .trait[data-importance="3"] { height: 6.5rem; }
+.frise-mini .trait[data-importance="2"] { height: 4.75rem; }
+.frise-mini .trait[data-importance="1"] { height: 3rem; }
 
 .frise-bornes {
   display: flex;
@@ -385,60 +300,6 @@ p {
   margin-top: 0.3rem;
   font-family: var(--titre);
   font-size: 0.8rem;
-}
-
-/* Parcours */
-
-.etapes {
-  margin: 0 0 3rem;
-  max-width: 44rem;
-}
-
-.etape {
-  display: grid;
-  grid-template-columns: 9rem minmax(0, 1fr);
-  gap: 1.5rem;
-  padding: 0 0 1.5rem;
-}
-
-.etape dt {
-  font-family: var(--titre);
-  font-size: 0.95rem;
-  color: var(--gris);
-  font-variant-numeric: tabular-nums;
-  padding-top: 0.1rem;
-}
-
-.etape dd {
-  margin: 0;
-}
-
-.etape dd strong {
-  font-family: var(--titre);
-  font-weight: 600;
-  font-size: 1.05rem;
-  display: block;
-}
-
-.etape dd span {
-  color: var(--gris);
-}
-
-.competences {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-  gap: 1.5rem 2.5rem;
-  max-width: 44rem;
-}
-
-.competences h3 {
-  font-size: 1rem;
-  margin-bottom: 0.4rem;
-}
-
-.competences p {
-  margin: 0;
-  color: var(--gris);
 }
 
 /* Contact */
@@ -460,8 +321,9 @@ p {
   font-family: var(--titre);
 }
 
-.bas {
-  padding: 2rem 0 3rem;
+.contact .bas {
+  margin: 4rem 0 0;
+  padding: 1.5rem 0 3rem;
   border-top: 1px solid var(--filet);
   font-family: var(--titre);
   font-size: 0.85rem;
@@ -481,8 +343,8 @@ p {
     position: static;
     height: auto;
     overflow: visible;
-    padding: 2rem 0 2.5rem;
-    gap: 1.5rem;
+    padding: 2rem 0 2rem;
+    gap: 1.25rem;
     border-bottom: 1px solid var(--filet);
   }
 
@@ -507,11 +369,24 @@ p {
   .projet h3 {
     font-size: 1.5rem;
   }
+}
 
-  .etape {
-    grid-template-columns: 1fr;
-    gap: 0.15rem;
+@media (max-width: 1180px) {
+  .projet {
+    grid-template-columns: minmax(0, 1fr);
   }
+
+  .projet .texte {
+    max-width: 38rem;
+  }
+
+  .frise-mini {
+    height: 6rem;
+  }
+
+  .frise-mini .trait[data-importance="3"] { height: 4.2rem; }
+  .frise-mini .trait[data-importance="2"] { height: 3.1rem; }
+  .frise-mini .trait[data-importance="1"] { height: 2rem; }
 }
 
 /* Page 404 */
